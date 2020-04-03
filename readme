@@ -3,3 +3,5 @@ yarn add history
 yarn add reactotron-react-js
 yarn add prop-types
 yarn add styled-components
+yarn add customize-cra react-app-rewired -D 
+yarn add babel-plugin-root-import -D
