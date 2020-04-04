@@ -5,12 +5,14 @@ import { Route, Redirect } from 'react-router-dom';
 import AuthLayout from '~/pages/_layouts/auth';
 import DefaultLayout from '~/pages/_layouts/default';
 
+import store from '~/store';
+
 export default function RouteWrapper({
   component: Component, //desestruturando propriedades que as rotas recebem 
   isPrivate = false,
   ...rest
 }) {
-  const signed = false;
+  const { signed } = store.getState().auth; //pegando estado do auth
 
   if (!signed && isPrivate) { //não está logado e é uma rota privada
     return <Redirect to="/" />;

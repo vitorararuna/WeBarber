@@ -1,8 +1,12 @@
 import React from 'react';
+import { useDispatch } from 'react-redux'; //p gente disparar uma action
 import { Link } from 'react-router-dom';
 import { Form, Input } from '@rocketseat/unform';
 import logo from '~/assets/logo.svg';
 import * as Yup from 'yup';
+
+import { signInRequest } from '~/store/modules/auth/actions'; //signInRequest é a função que o componente de login tem que disparar para q o SAGA ouça ela e faça o processo de auth
+
 
 const schema = Yup.object().shape({
   email: Yup.string()
@@ -13,8 +17,13 @@ const schema = Yup.object().shape({
 
 
 export default function SignIn() {
-  function handleSubmit(data) {
-    console.tron.log(data);
+  
+
+  const dispatch = useDispatch();
+
+  function handleSubmit({ email, password }) {
+    dispatch(signInRequest(email, password));
+    // console.tron.log(email, password);
   }
 
   return (
