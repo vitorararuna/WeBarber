@@ -70,8 +70,13 @@ export function setToken({ payload }) {
   }
 }
 
+export function signOut({ payload }) {
+  history.push('/');
+}
+
 export default all([
   takeLatest('persist/REHYDRATE', setToken),
   takeLatest('@auth/SIGN_IN_REQUEST', signIn), //toda vez que o takelatest ouvir meu sign_in_request, vai chamar uma função (signIn)
   takeLatest('@auth/SIGN_UP_REQUEST', signUp),
+  takeLatest('@auth/SIGN_OUT', signOut),
 ]);
